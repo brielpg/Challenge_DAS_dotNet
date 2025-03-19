@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\ABDWNSprint1.props" />
+</Project>

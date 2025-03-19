@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "bin\\Release\\net8.0\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/f1e97f41-09f1-442d-bbbd-cbb342efa5a0/resourceGroups/webapp-dotnetteste/providers/Microsoft.Web/sites/webapp-dotnetteste"
+}
