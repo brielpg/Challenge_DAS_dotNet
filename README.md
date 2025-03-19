@@ -144,8 +144,10 @@ tabelas no banco de dados oracle conforme foi estabelecido no projeto.
 
 ## Testes
 
-1. Swagger
+1. Swagger  
+
 Para testar a aplicação com o **Swagger** você pode adicionar `/swagger` na url  
 
-2. Json POSTMAN
+2. Json POSTMAN  
+
 Para testar a aplicação com o **Postman**, você pode fazer o download da coleção de `Json do Postman` que foi liberada no github `"Challenge Json .NET - DAS.postman_collection.json"`
