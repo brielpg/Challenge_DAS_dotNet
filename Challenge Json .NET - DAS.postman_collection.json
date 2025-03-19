@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "42d4ae33-bc59-4883-b9b8-24eed8807b35",
+		"name": "Challenge Json .NET - DAS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34121595"
+	},
+	"item": [
+		{
+			"name": "clientes",
+			"item": [
+				{
+					"name": "getClientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/cliente",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"nome\": \"João da Silva\",\r\n  \"cpf\": \"12345678900\",\r\n  \"telefone\": \"(11) 98765-4321\",\r\n  \"nmrCarteiraOdonto\": \"ODT123456\",\r\n  \"dataNascimento\": \"2025-03-19T14:53:59.208Z\",\r\n  \"quantidadeConsultas\": 0,\r\n  \"fotoCliente\": \"joao_silva_foto.jpg\",\r\n  \"enderecoId\": 0,\r\n  \"endereco\": {\r\n    \"id\": 0,\r\n    \"logradouro\": \"Avenida Paulista\",\r\n    \"bairro\": \"Bela Vista\",\r\n    \"cep\": \"01310-000\",\r\n    \"numero\": \"1000\",\r\n    \"complemento\": \"Apto 101\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"uf\": \"SP\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/cliente",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getClienteById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/cliente/2",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"cliente",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"nome\": \"João da Silva de Oliveira\",\r\n  \"cpf\": \"12345678900\",\r\n  \"telefone\": \"(11) 98765-4321\",\r\n  \"numeroCarteiraOdonto\": \"123456789\",\r\n  \"dataNascimento\": \"2025-03-19T14:53:59.208Z\",\r\n  \"quantidadeConsultas\": 0,\r\n  \"fotoCliente\": \"nova_joao_silva_foto.jpg\",\r\n  \"enderecoId\": 0,\r\n  \"endereco\": {\r\n    \"id\": 0,\r\n    \"logradouro\": \"Avenida Paulista\",\r\n    \"bairro\": \"Bela Vista\",\r\n    \"cep\": \"01310-000\",\r\n    \"numero\": \"1000\",\r\n    \"complemento\": \"Apto 101\",\r\n    \"cidade\": \"Rio de Janeiro\",\r\n    \"uf\": \"RJ\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/cliente/2",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"cliente",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/cliente/2",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"cliente",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "clinicas",
+			"item": [
+				{
+					"name": "getClinica",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/clinica",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"clinica"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createClinica",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"nome\": \"Clinica Sorriso\",\r\n  \"cnpj\": \"01234567890000\",\r\n  \"telefone\": \"(11) 98765-4321\",\r\n  \"email\": \"clinicasorriso@clinica.com\",\r\n  \"razaoSocial\": \"Clinica Sorriso LTDA\",\r\n  \"senha\": \"123\",\r\n  \"fotoClinica\": \"clinica_foto.png\",\r\n  \"enderecoId\": 0,\r\n  \"endereco\": {\r\n    \"id\": 0,\r\n    \"logradouro\": \"Avenida Paulista\",\r\n    \"bairro\": \"Bela Vista\",\r\n    \"cep\": \"01310-000\",\r\n    \"numero\": \"1000\",\r\n    \"complemento\": \"Sala 101\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"uf\": \"SP\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/clinica",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"clinica"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getClinicaById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/clinica/1",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"clinica",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateClinica",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"nome\": \"Clinica Sorriso\",\r\n  \"cnpj\": \"01234567890000\",\r\n  \"telefone\": \"(11) 98765-4321\",\r\n  \"email\": \"clinicasorriso@clinica.com\",\r\n  \"razaoSocial\": \"Clinica Sorriso LTDA\",\r\n  \"senha\": \"123\",\r\n  \"fotoClinica\": \"clinica_foto.png\",\r\n  \"enderecoId\": 0,\r\n  \"endereco\": {\r\n    \"id\": 0,\r\n    \"logradouro\": \"Avenida Paulista\",\r\n    \"bairro\": \"Bela Vista\",\r\n    \"cep\": \"01310-000\",\r\n    \"numero\": \"1000\",\r\n    \"complemento\": \"Sala 101\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"uf\": \"SP\"\r\n  }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/clinica/id",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"clinica",
+								"id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loginClinica",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"email@email.com\",\r\n  \"senha\": \"123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/Clinica/login",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Clinica",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "relatorios",
+			"item": [
+				{
+					"name": "getRelatorios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/relatorio",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"relatorio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createRelatorio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"titulo\": \"titulo\",\r\n  \"descricao\": \"descricao\",\r\n  \"medico\": \"medico\",\r\n  \"dataConsulta\": \"2025-03-19T18:45:41.301Z\",\r\n  \"dataEnvioRelatorio\": \"2025-03-19T18:45:41.301Z\",\r\n  \"valorConsulta\": 0,\r\n  \"status\": \"status\",\r\n  \"imagem\": \"imagem.png\",\r\n  \"clienteId\": 2,\r\n  \"clinicaId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/relatorio",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"relatorio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRelatorioById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/relatorio/1",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"relatorio",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createRelatorio Copy",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"titulo\": \"titulo\",\r\n  \"descricao\": \"descricao\",\r\n  \"medico\": \"medico\",\r\n  \"dataConsulta\": \"2025-03-19T18:45:41.301Z\",\r\n  \"dataEnvioRelatorio\": \"2025-03-19T18:45:41.301Z\",\r\n  \"valorConsulta\": 0,\r\n  \"status\": \"status\",\r\n  \"imagem\": \"imagem.png\",\r\n  \"clienteId\": 2,\r\n  \"clinicaId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "webapp-das-dotnet.azurewebsites.net/api/relatorio/1",
+							"host": [
+								"webapp-das-dotnet",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"relatorio",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
