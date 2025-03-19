@@ -129,7 +129,7 @@ tabelas no banco de dados oracle conforme foi estabelecido no projeto.
 
 1. **Acesse o diretorio do projeto**
     ```bash
-    cd ABDWNSprint3
+    cd Challenge_DAS_dotNet/ChallengerSprint3ABDWN/
     ```
 
 2. **Restaure dependências do projeto**
@@ -141,3 +141,11 @@ tabelas no banco de dados oracle conforme foi estabelecido no projeto.
     ```bash
     dotnet run
     ```
+
+## Testes
+
+1. Swagger
+Para testar a aplicação com o **Swagger** você pode adicionar `/swagger` na url  
+
+2. Json POSTMAN
+Para testar a aplicação com o **Postman**, você pode fazer o download da coleção de `Json do Postman` que foi liberada no github `"Challenge Json .NET - DAS.postman_collection.json"`
