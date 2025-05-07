@@ -8,5 +8,6 @@ namespace ABDWNSprint1.Repositories
         Relatorio BuscarRelatorioPorId(int id);
         void Inserir(Relatorio relatorio);
         void Atualizar(Relatorio relatorio);
+        void Deletar(int id);
     }
 }

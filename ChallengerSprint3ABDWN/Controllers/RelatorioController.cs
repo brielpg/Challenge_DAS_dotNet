@@ -80,5 +80,21 @@ namespace ABDWNSprint1.Controllers
             _relatorioRepository.Atualizar(relatorio);
             return NoContent();
         }
+
+        /// <summary>
+        /// Remover um relatorio do banco de dados
+        /// </summary>
+        /// <param name="id">Id do relatorio a ser deletado</param>
+        /// <returns>Confirmação da exclusão</returns>
+        [HttpDelete("{id}")]
+        public IActionResult DeletarRelatorio(int id)
+        {
+            var relatorio = _relatorioRepository.BuscarRelatorioPorId(id);
+            if (relatorio == null)
+                return NotFound();
+
+            _relatorioRepository.Deletar(id);
+            return NoContent();
+        }
     }
 }

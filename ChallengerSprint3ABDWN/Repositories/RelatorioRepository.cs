@@ -31,6 +31,16 @@ namespace ABDWNSprint1.Repositories
             _context.SaveChanges();
         }
 
+        public void Deletar(int id)
+        {
+            var relatorio = _context.Relatorios.Find(id);
+            if (relatorio != null)
+            {
+                _context.Relatorios.Remove(relatorio);
+                _context.SaveChanges();
+            }
+        }
+
         public void Atualizar(Relatorio relatorio)
         {
             _context.Relatorios.Update(relatorio);
