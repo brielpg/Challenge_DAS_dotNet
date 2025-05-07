@@ -35,6 +35,16 @@ namespace ABDWNSprint1.Repositories
             _context.SaveChanges();
         }
 
+        public void Deletar(int id)
+        {
+            var clinicas = _context.Clinicas.Find(id);
+            if (clinicas != null)
+            {
+                _context.Clinicas.Remove(clinicas);
+                _context.SaveChanges();
+            }
+        }
+
         public Clinica Login(string email, string senha)
         {
             return _context.Clinicas.FirstOrDefault(c => c.Email == email && c.Senha == senha);

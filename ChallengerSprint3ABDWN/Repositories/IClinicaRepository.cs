@@ -8,6 +8,7 @@ namespace ABDWNSprint1.Repositories
         Clinica BuscarClinicaPorId(int id);
         void Inserir(Clinica clinica);
         void Atualizar(Clinica clinica);
+        void Deletar(int id);
         Clinica Login(string email, string senha);
     }
 }

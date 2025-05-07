@@ -134,5 +134,21 @@ namespace ABDWNSprint1.Controllers
 
             return Ok(clinicaDTO);
         }
+
+        /// <summary>
+        /// Remover uma clinica do banco de dados
+        /// </summary>
+        /// <param name="id">Id da clinica a ser deletado</param>
+        /// <returns>Confirmação da exclusão</returns>
+        [HttpDelete("{id}")]
+        public IActionResult DeletarClinica(int id)
+        {
+            var clinica = _clinicaRepository.BuscarClinicaPorId(id);
+            if (clinica == null)
+                return NotFound();
+
+            _clinicaRepository.Deletar(id);
+            return NoContent();
+        }
     }
 }
