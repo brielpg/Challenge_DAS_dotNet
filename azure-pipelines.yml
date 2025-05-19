@@ -1,0 +1,73 @@
+trigger:
+  branches:
+    include:
+      - main
+ 
+pool:
+  vmImage: 'ubuntu-latest'
+ 
+variables:
+  nome-artefato: das-artifact-dotnet
+  RestoreBuildProjects: '**/*.csproj'
+  ServicePublishProjects: '**/*.csproj'
+ 
+stages:
+  - stage: BuildApp
+    jobs:
+      - job: buildWebApp
+        displayName: Realizar o Build do App .NET
+        steps:
+          - task: UseDotNet@2
+            displayName: 'Instalar .NET SDK'
+            inputs:
+              packageType: 'sdk'
+              version: '8.x'
+ 
+          - task: DotNetCoreCLI@2
+            displayName: 'Dotnet restore'
+            inputs:
+              command: restore
+              projects: $(RestoreBuildProjects)
+ 
+          - task: DotNetCoreCLI@2
+            displayName: 'Dotnet build'
+            inputs:
+              projects: $(ServicePublishProjects)
+              arguments: --configuration $(BuildConfiguration) --no-restore
+ 
+          - task: DotNetCoreCLI@2
+            displayName: Publish
+            inputs:
+              command: publish
+              publishWebProjects: false
+              zipAfterPublish: true
+              projects: $(ServicePublishProjects)
+              arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory) --no-restore'
+ 
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publicar artefato do Build .NET'
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: $(nome-artefato)
+ 
+  - stage: deployApp
+    jobs:
+      - job: deployWebApp
+        displayName: 'Deploy no Serviço de Aplicativo'
+        steps:
+          - task: DownloadBuildArtifacts@1
+            displayName: 'Baixar artefato gerado'
+            inputs:
+              buildType: 'current'
+              downloadType: 'specific'
+              downloadPath: '$(System.DefaultWorkingDirectory)'
+ 
+          - task: AzureRmWebAppDeployment@5
+            inputs:
+              ConnectionType: 'AzureRM'
+              azureSubscription: 'DasConnection'
+              appType: 'webAppLinux'
+              WebAppName: 'dental-analytics-safe'
+              packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+              RuntimeStack: 'DOTNETCORE|8.0'
+              DeploymentTypeLinux: 'oneDeploy'
