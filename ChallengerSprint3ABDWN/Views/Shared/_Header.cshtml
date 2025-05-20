@@ -1,0 +1,62 @@
+@* Header component *@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #f0f0f0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 1rem;
+    }
+    .header-left {
+        font-weight: bold;
+        font-size: 1.2em;
+        flex: 1;
+        text-align: left;
+    }
+    .header-right {
+        display: flex;
+        gap: 20px;
+        font-size: 1em;
+    }
+    a{
+        color: #333;
+    }
+
+    a.titulo{
+        font-size: 1.5em;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    a.header-link {
+        font-size: 1.1em;
+        text-decoration: none;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    a.header-link:hover {
+        color: #333;
+        text-decoration: underline;
+    }
+</style>
+
+<header class="header-container">
+    <div class="header-left">
+        <a class="titulo" href="/">Dental Analytics Safe</a>
+    </div>
+    <div class="header-right">
+        <a class="header-link" href="/">Home</a>
+        <a class="header-link" href="/clientemvc">Cliente</a>
+        <a class="header-link" href="/clinicamvc">Clinica</a>
+        <a class="header-link" href="/relatoriomvc">Relatorio</a>
+    </div>
+</header>

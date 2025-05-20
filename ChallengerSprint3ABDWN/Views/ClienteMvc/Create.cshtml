@@ -1,0 +1,207 @@
+@model ABDWNSprint1.Models.Cliente
+
+@{await Html.RenderPartialAsync("_Header");}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f4f8;
+        color: #333;
+        padding: 20px;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1, h4 {
+        color: #222;
+    }
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    label.control-label {
+        font-weight: 600;
+        color: #555;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    input.form-control {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 0.375rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    input.form-control:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        transition: background-color 0.15s ease-in-out;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        color: white;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.15s ease-in-out;
+    }
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        text-decoration: none;
+    }
+    .text-danger {
+        color: #dc3545;
+        font-size: 0.875rem;
+    }
+    hr {
+        border-top: 1px solid #ddd;
+        margin-bottom: 1.5rem;
+    }
+</style>
+
+<div class="container">
+    <h1>Create Cliente</h1>
+
+    <h4>Cliente</h4>
+    <hr />
+    <form id="createClienteForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Nome" class="control-label">Nome</label>
+            <input asp-for="Nome" class="form-control" id="Nome" name="Nome" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Cpf" class="control-label">Cpf</label>
+            <input asp-for="Cpf" class="form-control" id="Cpf" name="Cpf" />
+            <span asp-validation-for="Cpf" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Telefone" class="control-label">Telefone</label>
+            <input asp-for="Telefone" class="form-control" id="Telefone" name="Telefone" />
+            <span asp-validation-for="Telefone" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="NmrCarteiraOdonto" class="control-label">Número da Carteira Odonto</label>
+            <input asp-for="NmrCarteiraOdonto" class="form-control" id="NmrCarteiraOdonto" name="NmrCarteiraOdonto" />
+            <span asp-validation-for="NmrCarteiraOdonto" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="FotoCliente" class="control-label">Foto do Cliente</label>
+            <input asp-for="FotoCliente" class="form-control" id="FotoCliente" name="FotoCliente" />
+            <span asp-validation-for="FotoCliente" class="text-danger"></span>
+        </div>
+        <h4>Endereço</h4>
+        <hr />
+        <div class="form-group">
+            <label asp-for="Logradouro" class="control-label">Logradouro</label>
+            <input asp-for="Logradouro" class="form-control" id="Logradouro" name="Logradouro" />
+            <span asp-validation-for="Logradouro" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Bairro" class="control-label">Bairro</label>
+            <input asp-for="Bairro" class="form-control" id="Bairro" name="Bairro" />
+            <span asp-validation-for="Bairro" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Cep" class="control-label">Cep</label>
+            <input asp-for="Cep" class="form-control" id="Cep" name="Cep" />
+            <span asp-validation-for="Cep" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Numero" class="control-label">Numero</label>
+            <input asp-for="Numero" class="form-control" id="Numero" name="Numero" />
+            <span asp-validation-for="Numero" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Complemento" class="control-label">Complemento</label>
+            <input asp-for="Complemento" class="form-control" id="Complemento" name="Complemento" />
+            <span asp-validation-for="Complemento" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Cidade" class="control-label">Cidade</label>
+            <input asp-for="Cidade" class="form-control" id="Cidade" name="Cidade" />
+            <span asp-validation-for="Cidade" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Uf" class="control-label">Uf</label>
+            <input asp-for="Uf" class="form-control" id="Uf" name="Uf" />
+            <span asp-validation-for="Uf" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a href="/clientemvc" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('createClienteForm').addEventListener('submit', async function(event) {
+        event.preventDefault();  // Impede o comportamento padrão do formulário
+
+        const clienteData = {
+            Id: 0,
+            Nome: document.getElementById('Nome').value,
+            Cpf: document.getElementById('Cpf').value,
+            Telefone: document.getElementById('Telefone').value,
+            NmrCarteiraOdonto: document.getElementById('NmrCarteiraOdonto').value,
+            FotoCliente: document.getElementById('FotoCliente').value,
+            QuantidadeConsultas: 0,
+            EnderecoId: 0,
+            Endereco: {
+                Id: 0,
+                Logradouro: document.getElementById('Logradouro').value,
+                Bairro: document.getElementById('Bairro').value,
+                Cep: document.getElementById('Cep').value,
+                Numero: document.getElementById('Numero').value,
+                Complemento: document.getElementById('Complemento').value,
+                Cidade: document.getElementById('Cidade').value,
+                Uf: document.getElementById('Uf').value
+            }
+        };
+
+        console.log("Dados enviados:", clienteData); // Para depuração
+
+        try {
+            const response = await fetch('/api/Cliente', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(clienteData)
+            });
+
+            if (response.ok) {
+                alert('Cliente criado com sucesso!');
+                window.location.href = '/ClienteMvc/Index';
+            } else {
+                const errorData = await response.json();
+                alert('Erro ao criar cliente: ' + (errorData.message || response.statusText));
+            }
+        } catch (error) {
+            alert('Erro na requisição: ' + error.message);
+        }
+    });
+</script>

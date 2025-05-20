@@ -89,19 +89,18 @@ namespace ABDWNSprint1.Controllers
         /// <param name="clinicaDTO">Dados da clinica a serem atualizados</param>
         /// <returns>Confirmação da atualização</returns>
         [HttpPut("{id}")]
-        public IActionResult AtualizarClinica(int id, [FromBody] ClinicaDTO clinicaDTO)
+        public IActionResult AtualizarClinica(int id, [FromBody] ClinicaEditDTO clinicaDTO)
         {
             var clinica = _clinicaRepository.BuscarClinicaPorId(id);
             if (clinica == null)
                 return NotFound();
 
             clinica.Nome = clinicaDTO.Nome;
+            clinica.Cnpj = clinicaDTO.Cnpj;
             clinica.Telefone = clinicaDTO.Telefone;
             clinica.Email = clinicaDTO.Email;
             clinica.RazaoSocial = clinicaDTO.RazaoSocial;
             clinica.FotoClinica = clinicaDTO.FotoClinica;
-            clinica.EnderecoId = clinicaDTO.EnderecoId;
-            clinica.Endereco = clinicaDTO.Endereco;
 
             _clinicaRepository.Atualizar(clinica);
             return NoContent();

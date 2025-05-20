@@ -1,0 +1,131 @@
+@model IEnumerable<ABDWNSprint1.Models.Relatorio>
+
+@{await Html.RenderPartialAsync("_Header");}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9fafb;
+        color: #333;
+        padding: 20px;
+    }
+    h1 {
+        color: #222;
+        margin-bottom: 20px;
+    }
+    a.create-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        padding: 8px 15px;
+        background-color: #17a2b8;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    a.create-link:hover {
+        background-color: #117a8b;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    thead {
+        background-color: #17a2b8;
+        color: white;
+    }
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+    a.action-link {
+        color: #17a2b8;
+        text-decoration: none;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    a.action-link:hover {
+        text-decoration: underline;
+    }
+    button.delete-button {
+        background: none;
+        border: none;
+        color: #dc3545;
+        cursor: pointer;
+        padding: 0;
+        font: inherit;
+        margin-left: 10px;
+    }
+    button.delete-button:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<h1>Relatorios</h1>
+
+<p>
+    <a href="/relatoriomvc/create" class="create-link">Create New</a>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Titulo</th>
+            <th>Descricao</th>
+            <th>Medico</th>
+            <th>Data Consulta</th>
+            <th>Data Envio Relatorio</th>
+            <th>Valor Consulta</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Titulo</td>
+            <td>@item.Descricao</td>
+            <td>@item.Medico</td>
+            <td>@item.DataConsulta.ToShortDateString()</td>
+            <td>@item.DataEnvioRelatorio.ToShortDateString()</td>
+            <td>R$ @item.ValorConsulta</td>
+            <td>@item.Status</td>
+            <td>
+                <a href="/relatoriomvc/edit/@item.Id" class="action-link">Edit</a>
+                <button class="delete-button" onclick="deletarRelatorio(@item.Id)">Delete</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script>
+    async function deletarRelatorio(id) {
+        if (!confirm('Tem certeza que deseja deletar este Relatorio?')) {
+            return;
+        }
+        try {
+            const response = await fetch(`/api/Relatorio/${id}`, {
+                method: 'DELETE'
+            });
+            if (response.ok) {
+                alert('Relatorio deletado com sucesso.');
+                location.reload();
+            } else {
+                alert('Erro ao deletar relatorio.');
+            }
+        } catch (error) {
+            alert('Erro ao deletar relatorio.');
+        }
+    }
+</script>

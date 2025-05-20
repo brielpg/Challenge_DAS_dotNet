@@ -1,4 +1,4 @@
-﻿using ABDWNSprint1.Models;
+﻿﻿using ABDWNSprint1.Models;
 using ABDWNSprint1.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,6 +28,8 @@ namespace ABDWNSprint1.Repositories
         public void Inserir(Relatorio relatorio)
         {
             _context.Relatorios.Add(relatorio);
+            var cliente = _context.Clientes.FirstOrDefault(c => c.Id == relatorio.ClienteId);
+            cliente.QuantidadeConsultas += 1;
             _context.SaveChanges();
         }
 

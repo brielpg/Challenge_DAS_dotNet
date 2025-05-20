@@ -87,19 +87,17 @@ namespace ABDWNSprint1.Controllers
         /// <param name="clienteDTO">Dados do cliente a serem atualizados</param>
         /// <returns>Confirmação da atualização</returns>
         [HttpPut("{id}")]
-        public IActionResult AtualizarCliente(int id, [FromBody] ClienteDTO clienteDTO)
+        public IActionResult AtualizarCliente(int id, [FromBody] ClienteEditDTO clienteDTO)
         {
             var cliente = _clienteRepository.BuscarClientePorId(id);
             if (cliente == null)
                 return NotFound();
 
             cliente.Nome = clienteDTO.Nome;
+            cliente.Cpf = clienteDTO.Cpf;
             cliente.Telefone = clienteDTO.Telefone;
             cliente.NmrCarteiraOdonto = clienteDTO.NumeroCarteiraOdonto;
-            cliente.QuantidadeConsultas = clienteDTO.QuantidadeConsultas;
             cliente.FotoCliente = clienteDTO.FotoCliente;
-            cliente.EnderecoId = clienteDTO.EnderecoId;
-            cliente.Endereco = clienteDTO.Endereco;
 
             _clienteRepository.Atualizar(cliente);
             return NoContent();

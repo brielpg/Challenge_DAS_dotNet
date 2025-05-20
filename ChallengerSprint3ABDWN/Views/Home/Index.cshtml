@@ -1,0 +1,51 @@
+@{await Html.RenderPartialAsync("_Header");}
+
+<style>
+    .home-container {
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 50px 20px;
+    }
+    h1 {
+        font-size: 3em;
+        margin-bottom: 0.5em;
+        color: #222;
+    }
+    h3 {
+        font-weight: semi-bold;
+        margin-bottom: 3.2em;
+        color: #555;
+    }
+    .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 22px;
+    }
+    .button-group a {
+        display: inline-block;
+        padding: 14px 27px;
+        font-size: 1.3em;
+        color: white;
+        background-color: #007bff;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+    .button-group a:hover {
+        background-color: #0056b3;
+    }
+    a.cor-relatorio{background-color: #17a2b8;}
+    a.cor-relatorio:hover{background-color: #117a8b;}
+    a.cor-clinica{background-color: #28a745}
+    a.cor-clinica:hover{background-color: #1e7e34}
+</style>
+
+<div class="home-container">
+    <h1>Dental Analytics Safe</h1>
+    <h3>A plataforma para conectar tecnologia e cuidado odontologico.</h3>
+    <div class="button-group">
+        <a href="/ClienteMvc/Index">Cliente</a>
+        <a class="cor-clinica" href="/ClinicaMvc/Index">Clinica</a>
+        <a class="cor-relatorio" href="/RelatorioMvc/Index">Relatorio</a>
+    </div>
+</div>

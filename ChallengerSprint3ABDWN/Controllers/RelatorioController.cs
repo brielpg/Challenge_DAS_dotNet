@@ -1,4 +1,5 @@
-﻿using ABDWNSprint1.Models;
+﻿using ABDWNSprint1.DTOs;
+using ABDWNSprint1.Models;
 using ABDWNSprint1.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -60,7 +61,7 @@ namespace ABDWNSprint1.Controllers
         /// <param name="relatorioAtualizado">Dados atualizados do relatório.</param>
         /// <returns>Adiciona ao banco o relatorio atualizado.</returns>
         [HttpPut("{id}")]
-        public IActionResult AtualizarRelatorio(int id, [FromBody] Relatorio relatorioAtualizado)
+        public IActionResult AtualizarRelatorio(int id, [FromBody] RelatorioEditDTO relatorioAtualizado)
         {
             var relatorio = _relatorioRepository.BuscarRelatorioPorId(id);
             if (relatorio == null)
@@ -70,9 +71,7 @@ namespace ABDWNSprint1.Controllers
             relatorio.Descricao = relatorioAtualizado.Descricao;
             relatorio.Medico = relatorioAtualizado.Medico;
             relatorio.DataConsulta = relatorioAtualizado.DataConsulta;
-            relatorio.DataEnvioRelatorio = relatorioAtualizado.DataEnvioRelatorio;
             relatorio.ValorConsulta = relatorioAtualizado.ValorConsulta;
-            relatorio.Status = relatorioAtualizado.Status;
             relatorio.Imagem = relatorioAtualizado.Imagem;
             relatorio.ClienteId = relatorioAtualizado.ClienteId;
             relatorio.ClinicaId = relatorioAtualizado.ClinicaId;

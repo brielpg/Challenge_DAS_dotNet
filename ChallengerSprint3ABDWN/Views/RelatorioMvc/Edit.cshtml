@@ -1,0 +1,179 @@
+@model ABDWNSprint1.Models.Relatorio
+
+@{await Html.RenderPartialAsync("_Header");}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f4f8;
+        color: #333;
+        padding: 20px;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h1, h4 {
+        color: #222;
+    }
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    label.control-label {
+        font-weight: 600;
+        color: #555;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    input.form-control {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 0.375rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    input.form-control:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        transition: background-color 0.15s ease-in-out;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        color: white;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        border-radius: 0.375rem;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.15s ease-in-out;
+    }
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        text-decoration: none;
+    }
+    .text-danger {
+        color: #dc3545;
+        font-size: 0.875rem;
+    }
+    hr {
+        border-top: 1px solid #ddd;
+        margin-bottom: 1.5rem;
+    }
+</style>
+
+@{
+    ViewData["Title"] = "Edit Relatorio";
+}
+
+<div class="container">
+    <h1>Edit Relatorio</h1>
+
+    <h4>Relatorio</h4>
+    <hr />
+    <form id="updateRelatorioForm" method="post" enctype="multipart/form-data">
+        <input type="hidden" value="@Model.Id" id="Id" />
+        <div class="form-group">
+            <label asp-for="Titulo" class="control-label">Título</label>
+            <input asp-for="Titulo" value="@Model.Titulo" class="form-control" id="Titulo" name="Titulo" />
+            <span asp-validation-for="Titulo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Descricao" class="control-label">Descrição</label>
+            <input asp-for="Descricao" value="@Model.Descricao" class="form-control" id="Descricao" name="Descricao" />
+            <span asp-validation-for="Descricao" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Medico" class="control-label">Médico</label>
+            <input asp-for="Medico" value="@Model.Medico" class="form-control" id="Medico" name="Medico" />
+            <span asp-validation-for="Medico" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DataConsulta" class="control-label">Data da Consulta</label>
+            <input asp-for="DataConsulta" class="form-control" id="DataConsulta" name="DataConsulta" type="date" />
+            <span asp-validation-for="DataConsulta" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ValorConsulta" class="control-label">Valor da Consulta</label>
+            <input asp-for="ValorConsulta" value="@Model.ValorConsulta" class="form-control" id="ValorConsulta" name="ValorConsulta" />
+            <span asp-validation-for="ValorConsulta" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Imagem" class="control-label">Imagem</label>
+            <input asp-for="Imagem" value="@Model.Imagem" class="form-control" id="Imagem" name="Imagem" />
+            <span asp-validation-for="Imagem" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ClienteId" class="control-label">Cliente</label>
+            <input asp-for="ClienteId" value="@Model.ClienteId" class="form-control" id="ClienteId" name="ClienteId" />
+            <span asp-validation-for="ClienteId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ClinicaId" class="control-label">Clínica</label>
+            <input asp-for="ClinicaId" value="@Model.ClinicaId" class="form-control" id="ClinicaId" name="ClinicaId" />
+            <span asp-validation-for="ClinicaId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="/relatoriomvc" class="btn btn-secondary">Back to List</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('updateRelatorioForm').addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const relatorioData = {
+            Id: document.getElementById("Id").value,
+            Titulo: document.getElementById("Titulo").value,
+            Descricao: document.getElementById("Descricao").value,
+            Medico: document.getElementById("Medico").value,
+            DataConsulta: document.getElementById("DataConsulta").value,
+            ValorConsulta: document.getElementById("ValorConsulta").value,
+            Imagem: document.getElementById("Imagem").value,
+            ClienteId: document.getElementById("ClienteId").value,
+            ClinicaId: document.getElementById("ClinicaId").value
+        };
+
+        try {
+            const response = await fetch(`/api/Relatorio/${relatorioData.Id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(relatorioData)
+            });
+
+            if (response.ok) {
+                alert("Relatorio atualizado com sucesso!");
+                window.location.href = "/RelatorioMvc/Index";
+            } else {
+                const errorData = await response.json();
+                alert("Erro ao atualizar relatorio: " + (errorData.message || response.statusText));
+            }
+        } catch (error) {
+            alert("Erro na requisição: " + error.message);
+        }
+    });
+</script>

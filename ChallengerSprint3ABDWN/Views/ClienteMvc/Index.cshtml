@@ -1,0 +1,125 @@
+@model IEnumerable<ABDWNSprint1.Models.Cliente>
+
+@{await Html.RenderPartialAsync("_Header");}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9fafb;
+        color: #333;
+        padding: 20px;
+    }
+    h1 {
+        color: #222;
+        margin-bottom: 20px;
+    }
+    a.create-link {
+        display: inline-block;
+        margin-bottom: 15px;
+        padding: 8px 15px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    a.create-link:hover {
+        background-color: #0056b3;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    thead {
+        background-color: #007bff;
+        color: white;
+    }
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+    a.action-link {
+        color: #007bff;
+        text-decoration: none;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+    a.action-link:hover {
+        text-decoration: underline;
+    }
+    button.delete-button {
+        background: none;
+        border: none;
+        color: #dc3545;
+        cursor: pointer;
+        padding: 0;
+        font: inherit;
+        margin-left: 10px;
+    }
+    button.delete-button:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<h1>Clientes</h1>
+
+<p>
+    <a href="/clientemvc/create" class="create-link">Create New</a>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Numero Carteira Odonto</th>
+            <th>Quantidade Consultas</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Nome</td>
+            <td>@item.Telefone</td>
+            <td>@item.NmrCarteiraOdonto</td>
+            <td>@item.QuantidadeConsultas</td>
+            <td>
+                <a href="/clientemvc/edit/@item.Id" class="action-link">Edit</a>
+                <button class="delete-button" onclick="deletarCliente(@item.Id)">Delete</button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<script>
+    async function deletarCliente(id) {
+        if (!confirm('Tem certeza que deseja deletar este cliente?')) {
+            return;
+        }
+        try {
+            const response = await fetch(`/api/Cliente/${id}`, {
+                method: 'DELETE'
+            });
+            if (response.ok) {
+                alert('Cliente deletado com sucesso.');
+                location.reload();
+            } else {
+                alert('Erro ao deletar cliente.');
+            }
+        } catch (error) {
+            alert('Erro ao deletar cliente.');
+        }
+    }
+</script>
