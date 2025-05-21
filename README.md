@@ -1,9 +1,9 @@
-﻿# Integrantes
-| RM   | Nome       |
-| :---------- | :--------- |
-| `554012` | `Gabriel Pescarolli Galiza` |
+# Integrantes
+| RM       | Nome                          |
+| :------- | :---------------------------- |
+| `554012` | `Gabriel Pescarolli Galiza`   |
 | `554258` | `Guilherme Gambarão Baptista` |
-| `553640` | `Marcelo Vieira Junior` |
+| `553640` | `Marcelo Vieira Junior`       |
 
 ## Objetivo proposto pela OdontoPrev
 
@@ -16,12 +16,9 @@ reduzir sinistros.
 
 
 ## Escopo
+A ideia é uma aplicação de software de triagem de dados da consulta antes de realizar a marcação, onde é feito um relatório através da descrição do paciente e a descrição da consulta realizada, e então realizar uma análise, que indica a porcentagem de veracidade de uma consulta odontológica, dessa forma previnimos possíveis fraudes. 
+Vale ressaltar que essa porcentagem não substitui a análise de um profissional da OdontoPrev, a ideia é que os profissionais da OdontoPrev irão priorizar e analisar os casos com maior porcentagem de veracidade do problema.
 
-A ideia é um app software de triagem de dados da consulta antes de realizar a marcação, onde é feito um relatório  
-através da descrição do usuário e de uma imagem de seus dentes, e então uma análise que indica a porcentagem de  
-necessidade de uma consulta odontológica, dessa forma auxiliariamos as clínicas na priorização dos atendimentos. 
-Vale ressaltar que essa porcentagem não substitui a análise de um profissional da OdontoPrev, a ideia é que os 
-profissionais da OdontoPrev irão priorizar e analisar os casos com maior porcentagem de "veracidade" do problema.
 
 ## Sumário
 - [Passos para rodar a Aplicação](#1-como-rodar-a-aplicação)
@@ -29,9 +26,12 @@ profissionais da OdontoPrev irão priorizar e analisar os casos com maior porcen
 - [Requisitos](#21-requisitos)
 - [Domínio](#23-domínio)
 - [Classes](#24-classes-implementadas)
+- [Banco de Dados Oracle](#27-banco-de-dados-oracle)
+- [Configuração CORS](#28-configuração-cors)
 - [Instruções de Instalação e Configuração](#3-instruções-de-instalação-e-configuração)
-- [Testes](#4-testes)
+- [API Endpoints](#4-api-endpoints)
 
+---
 ## 1. Como rodar a aplicação
 
 1. **Acesse o diretorio do projeto**
@@ -49,6 +49,7 @@ profissionais da OdontoPrev irão priorizar e analisar os casos com maior porcen
     dotnet run
     ```
 
+---
 ## 2. Definição e Implementação da Arquitetura da API
 
 A escolha entre monolítica ou microserviços depende muito do contexto do projeto, na arquitetura monolítica, toda
@@ -61,22 +62,23 @@ monolítica era mais vantajosa para facilidade de implementação e de manutenç
 atendendo os requisitos do projeto de forma eficaz. A abordagem de microserviços seria mais vantajosa para 
 sistemas maiores, com requisitos de escabilidade e resiliência mais complexos.
 
+
 ### 2.1 Requisitos
 
-#### 2.1.1 Requisitos Funcionais 
+#### Requisitos Funcionais
+> cadastro, atualização de dados, listagem dos clientes e a remoção de clientes.
+>
+> cadastro, login, atualização de dados, listagem de clinicas.
+>
+> cadastro, atualização de dados e listagem dos relatórios.
 
-- cadastro, atualização de dados, listagem dos clientes e a remoção de clientes.
-- cadastro, login, atualização de dados, listagem de clinicas.
-- cadastro, atualização de dados e listagem dos relatórios.
-
-#### 2.1.2 Requisitos Não Funcionais
-
-- A aplicação deve ser responsiva e fácil de usar.
-- Garantir a segurança de dados dos usuários.
+#### Requisitos Não Funcionais
+> A aplicação deve ser responsiva e fácil de usar. 
+> 
+> Garantir a segurança de dados dos usuários.
 
 
 ### 2.2 Clean Architecture
-
 O projeto considera a utilização de uma arquitetura limpa para separar responsabilidades, facilitando a manutenção
 e o teste do código. A camada models contém as entidades necessárias para o projeto e suas regras de negócio, a 
 camada DTOs contém as classes DTOs necessárias para isolar a camada models, garantindo assim que não ocorra a 
@@ -86,6 +88,7 @@ métodos, permitindo que a camada que conversa com o banco não se relacione dir
 interface faça esse relacionamento e a camada controller apresenta os métodos HTTPs com suas operações estabelecidas
 para cada uma das entidades.
 
+
 ### 2.3 Domínio 
 As principais entidades do domínio incluem:
 
@@ -94,9 +97,8 @@ As principais entidades do domínio incluem:
 - **Relatorio** contém os detalhes sobre as consultas realizadas.
 - **Endereco** armazena informações de endereços relacionadas as clinicas e aos clientes.
 
+
 ### 2.4 Classes Implementadas
-
-
 - **Clinica** contém os dados necessários da clínica, já sendo definido qual é [Required] e qual não é preciso ser
 e apresenta as regras de negócio necessárias, sendo a que valida o cnpj através da função que considera apenas os 
 números e verifica se o tamanho é o adequado, e a que valida o formato do email através do [EmailAddress]
@@ -120,7 +122,7 @@ classe e seguir a ideia para cada DTO criada, nas operações de inserir novos c
 models para que todos os dados sejam inseridos no banco, além disso, cada um dos endpoints e seus modelos de dados
 foram documentados.
 
-#### 2.4.1 DTOs
+### 2.5 DTOs
 - **LoginDTO** essa classe foi criada para efetuar o login da clínica sem precisar manipular a entidade e todos seus
 atributos.
 
@@ -133,7 +135,7 @@ atributos.
 a entidade e proteger dados como cnpj e senha.
 
 
-#### 2.4.2 REPOSITORIES
+### 2.6 REPOSITORIES
 - **ClienteRepository** criada para conversar com a tabela cliente no banco de dados, tornando possível as operações
 CRUD.
 
@@ -146,32 +148,55 @@ estabelecidas para essa classe.
 as operações CRUD.
 
 
-- **InterfacesRepositories** as interfaces repository criada para cada classe repository tem o intuito de trazer
-mais segurança ao código, pois dessa forma a pasta controller não conversa diretamente com as classes que chamam
-o banco de dados, é necessário passar a informação ao program.cs para que toda vez que a classe interface for 
-chamada a repository relacionada aos seus métodos é acionada. OBS: Optamos por fazer essa ação direta no program.cs
-ao invés de criar uma parta extension por conta de não haver muitas classes repositorys no código.
+- **InterfacesRepositories** as interfaces repository criada para cada classe repository tem o intuito de trazer mais segurança ao código, pois dessa forma a pasta controller não conversa diretamente com as classes que chamam o banco de dados, é necessário passar a informação ao program.cs para que toda vez que a classe interface for  chamada a repository relacionada aos seus métodos é acionada.
 
+> OBS: Optamos por fazer essa ação direta no program.cs ao invés de criar uma parta extension por conta de não haver muitas classes repositorys no código.
 
+### 2.7 Banco de Dados Oracle
+
+A aplicação utiliza o banco de dados Oracle para persistência dos dados. A string de conexão deve ser configurada no arquivo `appsettings.json` na chave `"OracleFIAPDbContext"`. Certifique-se de que o banco esteja acessível e as credenciais estejam corretas para o funcionamento da aplicação.
+
+### 2.8 Configuração CORS
+
+Foi configurada uma política CORS chamada `"PermitirTudo"` que permite requisições de qualquer origem, método e cabeçalho. Essa configuração facilita o desenvolvimento e testes, permitindo que clientes externos acessem a API sem restrições de origem.
+
+### 2.9 Uso de DTOs e Repository Pattern
+
+O projeto utiliza Data Transfer Objects (DTOs) para isolar a camada de domínio da camada de apresentação, garantindo que apenas os dados necessários sejam expostos ou recebidos pelas APIs. As operações de inserção geralmente utilizam as entidades do domínio diretamente, enquanto atualizações e listagens utilizam DTOs para maior controle e segurança.
+
+O padrão Repository é utilizado para abstrair o acesso ao banco de dados, facilitando a manutenção e testes. Cada entidade possui sua interface e implementação de repositório, que são injetadas nas controllers via Dependency Injection configurada no `Program.cs`.
+
+---
 ## 3. Instruções de Instalação e Configuração
 
-> No entregável constará tanto o link do repositório no github com o projeto como o arquivo 
-do projeto, caso opte pelo link do github, clone o repositório.
+> No entregável constará tanto o link do repositório no github com o projeto como o arquivo do projeto, caso opte pelo link do github, clone o repositório.
 
->Configurar a string de conexão do seu banco de dados Oracle no arquivo appsettings.json.
+> Configurar a string de conexão do seu banco de dados Oracle no arquivo appsettings.json.
 
 > Restaurar as dependências do projeto, através do comando 'dotnet restore' na aba do terminal.
 
-> Execute o comando para aplicar as migrations, dessa forma você criará ou atualizará suas 
-tabelas no banco de dados oracle conforme foi estabelecido no projeto.
+> Execute o comando para aplicar as migrations, dessa forma você criará ou atualizará suas tabelas no banco de dados oracle conforme foi estabelecido no projeto.
 
+---
+## 4. API Endpoints
 
-## 4. Testes
+A aplicação expõe os seguintes endpoints da api:
 
-- **Swagger**  
-
-> Para testar a aplicação com o **Swagger** você pode adicionar `/swagger` na url  
-
-- **Json POSTMAN**  
-
-> Para testar a aplicação com o **Postman**, você pode fazer o download da coleção de `Json do Postman` que foi liberada no github `"Challenge Json .NET - DAS.postman_collection.json"`
+| Entidade | Método HTTP | Rota                  | Descrição                         |
+|----------|-------------|-----------------------|-----------------------------------|
+| Cliente  | GET         | /api/cliente          | Lista todos os clientes           |
+| Cliente  | GET         | /api/cliente/{id}     | Busca cliente por ID              |
+| Cliente  | POST        | /api/cliente          | Insere novo cliente               |
+| Cliente  | PUT         | /api/cliente/{id}     | Atualiza cliente por ID           |
+| Cliente  | DELETE      | /api/cliente/{id}     | Remove cliente por ID             |
+| Clinica  | GET         | /api/clinica          | Lista todas as clínicas           |
+| Clinica  | GET         | /api/clinica/{id}     | Busca clínica por ID              |
+| Clinica  | POST        | /api/clinica          | Insere nova clínica               |
+| Clinica  | PUT         | /api/clinica/{id}     | Atualiza clínica por ID           |
+| Clinica  | POST        | /api/clinica/login    | Login da clínica                  |
+| Clinica  | DELETE      | /api/clinica/{id}     | Remove clínica por ID             |
+| Relatorio| GET         | /api/relatorio        | Lista todos os relatórios         |
+| Relatorio| GET         | /api/relatorio/{id}   | Busca relatório por ID            |
+| Relatorio| POST        | /api/relatorio        | Insere novo relatório             |
+| Relatorio| PUT         | /api/relatorio/{id}   | Atualiza relatório por ID         |
+| Relatorio| DELETE      | /api/relatorio/{id}   | Remove relatório por ID           |
